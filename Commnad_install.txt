@@ -1,0 +1,56 @@
+1) Prerequisite
+1.1) Essentials: Packages needed to build an image on a headless system
+
+$ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool    
+####################################################################################
+1.2) Ubuntu
+$ sudo apt install git python3-distutils gcc g++ make file wget \
+    gawk diffstat bzip2 cpio chrpath zstd lz4 bzip2
+####################################################################################
+2) Download the source
+
+$ git clone https://github.com/openbmc/openbmc
+$ cd openbmc
+####################################################################################
+3) install re-Build
+3.1) Execute the install-buildtools script. Here is an example:
+
+$ cd poky
+$ scripts/install-buildtools \
+  --without-extended-buildtools \
+  --base-url https://downloads.yoctoproject.org/releases/yocto \
+  --release yocto-4.0.999 \
+  --installer-version 4.0.999
+
+
+####################################################################################
+3.2) Source the tools environment setup script by using a command like the following:
+
+$ source /path/to/poky/buildtools/environment-setup-x86_64-pokysdk-linux
+
+
+4) setup machine
+
+$ . setup <machine> [build_dir]
+Target machine must be specified. Use one of:
+
+bletchley               mihawk                  swift
+dl360poc                mori                    tatlin-archive-x86
+e3c246d4i               mtjade                  tiogapass
+ethanolx                nicole                  transformers
+evb-ast2500             olympus-nuvoton         vegman-n110
+evb-ast2600             on5263m5                vegman-rx20
+evb-npcm750             p10bmc                  vegman-sx20
+f0b                     palmetto                witherspoon
+fp5280g2                quanta-q71l             witherspoon-tacoma
+g220a                   romulus                 x11spi
+gbs                     s2600wf                 yosemitev2
+gsj                     s6q                     zaius
+kudo                    s7106
+lannister               s8036
+
+
+5) build
+
+
+$ bitbake obmc-phosphor-image
